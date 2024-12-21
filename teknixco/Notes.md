@@ -170,3 +170,15 @@ Created a simple smart contract (Teknixco.sol).
 Deployed the contract to a local network using Hardhat.
 Interacted with the contract by transferring tokens between accounts.
 This should give you a basic working backend for your blockchain network, "Teknixco", running locally. When you're ready, we can add a UI on top of this backend.
+
+
+To check Balance
+npx hardhat console --network localhost
+const [deployer] = await ethers.getSigners();
+const balance = await deployer.provider.getBalance(deployer.address);
+console.log("Balance of deployer:", ethers.formatEther(balance));
+
+Fund the account: If the account has a balance of 0, you'll need to fund it. To do this:
+Hardhat comes with a local network that automatically creates some default accounts with pre-funded ETH. If you're using that local network, the accounts should already have sufficient funds. However, if you're working with a custom account or if the default accounts are not sufficient, you can transfer some ETH from another account or faucet.
+You can also specify an initial balance for your account when starting the local Hardhat network. For example, you can start a Hardhat node with pre-funded accounts by specifying an initial balance:
+npx hardhat node --fork <forked_network_url> --accounts 10 --blocktime 5
